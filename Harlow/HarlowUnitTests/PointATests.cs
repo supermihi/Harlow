@@ -1,45 +1,44 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Moq;
 using Harlow;
 
 namespace HarlowUnitTests {
 
-	[TestClass()]
 	public class PointATests {
 
-		[TestMethod()]
+		[Fact]
 		public void PointA_DefaultConstructorTest() {
 			var p = new PointA();
 
-			Assert.IsInstanceOfType(p.Value, typeof(List<double>));
-			Assert.AreEqual(2, p.Value.Count);
-			Assert.AreEqual(0.0, p.Value[0]);
-			Assert.AreEqual(0.0, p.Value[1]);
+			Assert.IsType<List<double>>(p.Value);
+			Assert.Equal(2, p.Value.Count);
+			Assert.Equal(0.0, p.Value[0]);
+			Assert.Equal(0.0, p.Value[1]);
 		}
 
-		[TestMethod()]
+		[Fact]
 		public void PointA_XandYConstructorTest() {
 		
 			var p = new PointA(1.85, 3.56);
 
-			Assert.IsInstanceOfType(p.Value, typeof(List<double>));
-			Assert.AreEqual(2, p.Value.Count);
-			Assert.AreEqual(1.85, p.Value[0]);
-			Assert.AreEqual(3.56, p.Value[1]);
+			Assert.IsType<List<double>>(p.Value);
+			Assert.Equal(2, p.Value.Count);
+			Assert.Equal(1.85, p.Value[0]);
+			Assert.Equal(3.56, p.Value[1]);
 		}
 
-		[TestMethod()]
+		[Fact]
 		public void PointA_GetEnumeratorTest() {
 			var p = new PointA(123.456, 789.012);
 			
-			Assert.IsInstanceOfType(p.GetEnumerator(), typeof(IEnumerator<double>));
+			Assert.IsAssignableFrom<IEnumerator<double>>(p.GetEnumerator());
 			
 			IEnumerator<double> pe = p.GetEnumerator();
 			pe.MoveNext();
-			Assert.AreEqual(123.456, pe.Current);
+			Assert.Equal(123.456, pe.Current);
 			pe.MoveNext();
-			Assert.AreEqual(789.012, pe.Current);
+			Assert.Equal(789.012, pe.Current);
 
 		}
 	}

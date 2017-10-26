@@ -1,38 +1,37 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
 using Harlow;
+using Xunit;
 
 namespace HarlowUnitTests {
 
-    [TestClass]
 	public class VectorFeatureTest {
 
-		[TestMethod]
+		[Fact]
 		public void Test_VectorFeature_Point() {
 			object[] parm = new object[1];
 			parm[0] = ShapeType.Point;
 
 			var  vfMock = new Mock<VectorFeature>(parm);
 
-			Assert.IsNull(vfMock.Object.Type);
-			Assert.IsNull(vfMock.Object.Coordinates);
-			Assert.IsNull(vfMock.Object.Bbox);
-			Assert.IsNotNull(vfMock.Object.Properties);
+			Assert.Null(vfMock.Object.Type);
+			Assert.Null(vfMock.Object.Coordinates);
+			Assert.Null(vfMock.Object.Bbox);
+			Assert.NotNull(vfMock.Object.Properties);
 			
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Test__VectorFeature_NotPoint() {
 			object[] parm = new object[1];
 			parm[0] = ShapeType.Polygon;
 
 			var  vfMock = new Mock<VectorFeature>(parm);
 
-			Assert.IsNull(vfMock.Object.Type);
-			Assert.IsNull(vfMock.Object.Coordinates);
-			Assert.IsNotNull(vfMock.Object.Bbox);
-			Assert.AreEqual(4, vfMock.Object.Bbox.Length);
-			Assert.IsNotNull(vfMock.Object.Properties);
+			Assert.Null(vfMock.Object.Type);
+			Assert.Null(vfMock.Object.Coordinates);
+			Assert.NotNull(vfMock.Object.Bbox);
+			Assert.Equal(4, vfMock.Object.Bbox.Length);
+			Assert.NotNull(vfMock.Object.Properties);
 			
 		}
 	}
